@@ -21,13 +21,8 @@ class App extends Component {
       title: '',
       results: [],
       filterOption: '',
-      error: null
-    //   saleInfo": {
-    //     "country": "US",
-    //     "saleability": "NOT_FOR_SALE",
-    //     "isEbook": false
-    // }
-    //"printType": "BOOK"
+      error: null,
+      searchWord: ''
     };
   }
 
@@ -35,12 +30,23 @@ class App extends Component {
     console.log('this is e', e);
     this.setState({
       filterOption: e
+    },function(){
+      if(this.state.searchWord!=''){
+        this.searchTerm();
+      }
+    });
+  }
+
+  updateSearchWord(e){
+    this.setState({
+      searchWord: e.target.value
     });
   }
 
 
 
-  searchTerm(word) {
+  searchTerm() {
+    let word = this.state.searchWord;
     const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
     const KEY_END = "&key=AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg"
     let PARAMS = this.state.filterOption !== '' ? ('&' + this.state.filterOption) : ''
@@ -50,6 +56,7 @@ class App extends Component {
     const options = {
       method: 'GET',
       headers: {
+         
         "Content-Type": "application/json"
       }
     }
@@ -68,11 +75,11 @@ class App extends Component {
           error: null
         });
       })
-      // .catch(err => {
-      //   this.setState({
-      //     error: err.message
-      //   })
-      // })
+      .catch(err => {
+        this.setState({
+          error: err.message
+        })
+      })
      }
      
 
@@ -81,7 +88,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header" >
           <div className="Booksearch-bar">
-          <SearchBar searchTerm={(word) => this.searchTerm(word)} />
+          <SearchBar searchTerm={(word) => this.searchTerm(word)} updateSearchWord={(e) => this.updateSearchWord(e)} />
           </div>
           </header>
           <div className="Booksearch-filter">

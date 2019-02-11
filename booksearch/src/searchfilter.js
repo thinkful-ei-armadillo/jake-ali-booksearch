@@ -11,6 +11,7 @@ class SearchFilter extends Component {
                     <select
                     id='bookType'
                     name='bookType' onChange={(e) => this.props.handleFilter(e.target.value)}>
+                    <option value=''>All</option>
                     <option value='filter=full'>Full Books</option>
                     <option value='filter=partial'>Partial Books</option>
                     <option value='filter=ebooks'>E-books</option>

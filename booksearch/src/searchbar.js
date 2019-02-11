@@ -18,6 +18,7 @@ handleSubmit(e) {
             name="bookTitle"
             id="bookTitle"
             placeholder="Book Title"
+            onChange={(e) => this.props.updateSearchWord(e)}
             //value={this.props.title}
           />
           <button type="submit" >Search</button>
