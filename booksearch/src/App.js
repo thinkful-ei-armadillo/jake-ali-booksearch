@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './searchbar';
-//import SearchFilter from './searchfilter';
+import SearchFilter from './searchfilter';
 import Results from './results';
 
 // api key: AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg
@@ -20,7 +20,7 @@ class App extends Component {
       this.state = {
       title: '',
       results: [],
-      filterOption: null,
+      filterOption: '',
       error: null
     //   saleInfo": {
     //     "country": "US",
@@ -31,11 +31,22 @@ class App extends Component {
     };
   }
 
+  handleFilter(e) {
+    console.log('this is e', e);
+    this.setState({
+      filterOption: e
+    });
+  }
 
 
 
   searchTerm(word) {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${word}&key=AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg`;
+    const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
+    const KEY_END = "&key=AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg"
+    let PARAMS = this.state.filterOption !== '' ? ('&' + this.state.filterOption) : ''
+    const url = (BASE_URL + word + PARAMS + KEY_END);
+    console.log(url);
+    ;
     const options = {
       method: 'GET',
       headers: {
@@ -74,10 +85,10 @@ class App extends Component {
           </div>
           </header>
           <div className="Booksearch-filter">
-          {/* <SearchFilter /> */}
+          {<SearchFilter handleFilter={(filter) => this.handleFilter(filter)}/>}
           </div>
           <div className="Results-list"></div>
-          <Results results={this.state.results} />
+          <Results filterOption={this.state.filterOption} results={this.state.results} />
       </div>
     );
   }
