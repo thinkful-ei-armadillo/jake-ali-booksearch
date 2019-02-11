@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import App from "./App";
+
 
 class SearchBar extends Component {
 
@@ -16,9 +16,9 @@ handleSubmit(e) {
           <input
             type="text"
             name="bookTitle"
-            id="Book Title"
+            id="bookTitle"
             placeholder="Book Title"
-            value={this.props.title}
+            //value={this.props.title}
           />
           <button type="submit" >Search</button>
         </form>

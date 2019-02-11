@@ -2,23 +2,24 @@ import React, { Component } from "react";
 import App from "./App";
 
 class Results extends Component {
-    
-  resultsList = () => {
-    this.props.results.map((book, key) => {
+
+  resultsList() {
+      console.log('results', this.props.results)
+   return this.props.results.map((book, key) => (
       <li>
         <h3>{book.name}</h3>
         <p>Author:{book.author}</p>
         <p>Price:{book.price}</p>
         <p>{book.review}</p>
         <img href={book.image} />
-      </li>;
-    });
+      </li>
+    ));
   };
 
   render() {
     return (
       <div>
-        <ul>{this.resultsList}</ul>
+        <ul>{this.resultsList()}</ul>
       </div>
     );
   }
