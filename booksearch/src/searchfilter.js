@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import App from './app';
+import App from './App';
 
 class SearchFilter extends Component {
 
     render() {
     return (
             <div>
-                <p></p>
+                <form>
+                    <label className='filter'>Print Type:</label>
+                    <select
+                    id=''
+                    name=''
+                </form>
             </div>
         )
     
