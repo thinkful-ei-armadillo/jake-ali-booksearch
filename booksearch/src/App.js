@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
       this.state = {
       title: '',
-      results: ['placeholder'],
+      results: [],
       filterOption: null,
       error: null
     //   saleInfo": {
@@ -33,13 +33,13 @@ class App extends Component {
 
 
 
+
   searchTerm(word) {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${word}&key=AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg`;
     const options = {
       method: 'GET',
       headers: {
         "Content-Type": "application/json"
-        //"Authorization": "Bearer AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg"
       }
     }
     fetch(url, options)
@@ -51,10 +51,9 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        let newItems = data.items;
-        const newResults = this.state.results
-        this.props.setState({
-          results: [...newResults, newItems],
+        console.log(data);
+        this.setState({
+          results: data.items,
           error: null
         });
       })
@@ -71,7 +70,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header" >
           <div className="Booksearch-bar">
-          <SearchBar searchTerm={this.searchTerm} />
+          <SearchBar searchTerm={(word) => this.searchTerm(word)} />
           </div>
           </header>
           <div className="Booksearch-filter">
