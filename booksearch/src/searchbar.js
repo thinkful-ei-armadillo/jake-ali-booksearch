@@ -2,19 +2,25 @@ import React, { Component } from "react";
 import App from "./App";
 
 class SearchBar extends Component {
+
+handleSubmit(e) {
+    e.preventDefault();
+    return this.props.searchTerm(e.target.bookTitle.value);
+}
+
   render() {
     return (
       <div>
-        <form class="addbook-form" onSubmit={e => this.handleSubmit(e)}>
+        <form className="addbook-form" onSubmit={(e) => this.handleSubmit(e)}>
           <label>Search:</label>
           <input
             type="text"
-            name="Book-Title"
+            name="bookTitle"
             id="Book Title"
             placeholder="Book Title"
-            value={this.state.title}
+            value={this.props.title}
           />
-          <button type="submit">Search</button>
+          <button type="submit" >Search</button>
         </form>
       </div>
     );

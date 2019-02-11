@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './searchbar';
-import SearchFilter from './searchfilter';
-import Results from './results';
+//import SearchFilter from './searchfilter';
+//import Results from './results';
 
 // api key: AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg
 //base url GET https://www.googleapis.com/books/v1/volumes?q=
@@ -20,7 +20,8 @@ class App extends Component {
     this.state = {
       title: '',
       results: [],
-      filterOption: null
+      filterOption: null,
+      error: null
     //   saleInfo": {
     //     "country": "US",
     //     "saleability": "NOT_FOR_SALE",
@@ -30,14 +31,15 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=';
-    const API_KEY = 'AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg'
+  searchTerm(word) {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${word}`;
+    
     const options = {
       method: 'GET',
       headers: {
-        "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer AIzaSyDU51la7XQeUPpOQJ55ue3seE2sfhzTlcg"
+        
       }
     }
     fetch(url, options)
@@ -54,25 +56,25 @@ class App extends Component {
           error: null
         });
       })
-      .catch(err => {
-        this.setState({
-          error: err.message
-        })
-      })
-    }
+    //   .catch(err => {
+    //     this.setState({
+    //       error: err.message
+    //     })
+    //   })
+     }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <div className="Booksearch-bar">
-          <SearchBar  />
+          <SearchBar searchTerm={this.searchTerm} />
           </div>
           <div className="Booksearch-filter">
-          <SearchFilter />
+          {/* <SearchFilter /> */}
           </div>
           <div className="Results-list"></div>
-          <Results results={this.state.results} />
+          {/* <Results results={this.state.results} /> */}
         </header>
       </div>
     );
