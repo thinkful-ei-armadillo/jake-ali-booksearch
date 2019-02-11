@@ -6,7 +6,17 @@ class SearchBar extends Component {
     render() {
     return (
             <div>
-                <p></p>
+                <form class="addbook-form" onSubmit={e => this.handleSubmit(e)}>
+                    <label>Search:</label>
+                    <input 
+                        type="text" 
+                        name="Book-Title" 
+                        id="Book Title" 
+                        placeholder="Book Title"
+                        value={this.state.title}/>
+                    <button type="submit" >Search</button>
+
+                </form>
             </div>
         )
     
