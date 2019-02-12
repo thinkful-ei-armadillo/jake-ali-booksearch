@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import App from './App';
+import './searchfilter.css'
 
 class SearchFilter extends Component {
 
     render() {
     return (
             <div>
-                <form>
-                    <label className='filter'>Book Type:</label>
+                <form className='filterForm'>
+                    <label className='filter'>Book Type: </label>
                     <select
                     id='bookType'
                     name='bookType' onChange={(e) => this.props.handleFilter(e.target.value)}>
@@ -18,7 +18,7 @@ class SearchFilter extends Component {
                     <option value='filter=free-ebooks'>Free E-books</option>
                     
                     </select>
-                    <label className='filter'>Print Type:</label>
+                    <label className='filter'>Print Type: </label>
                     <select
                     id='printType'
                     name='printType' onChange={(e) => this.props.handleFilter(e.target.value)}>

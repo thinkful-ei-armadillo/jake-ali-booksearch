@@ -9,10 +9,11 @@ class Results extends Component {
    return this.props.results.map((book, key) => (
       <li>
         <h3>{book.volumeInfo.title}</h3>
-        <p>Author:{(book.volumeInfo.hasOwnProperty('authors')) ? book.volumeInfo.authors[0] : ''}</p>
-        <p>Price:{book.saleInfo.saleability}</p>
-        <p>{book.volumeInfo.description}</p>
         <img src={book.volumeInfo.hasOwnProperty('imageLinks') ? book.volumeInfo.imageLinks.thumbnail : 'N/A'} alt="thumbnail" />
+        <p>Author: {(book.volumeInfo.hasOwnProperty('authors')) ? book.volumeInfo.authors[0] : ''}</p>
+        <p>{book.volumeInfo.description}</p>
+        <p>Price: {book.saleInfo.hasOwnProperty('listPrice') ? book.saleInfo.listPrice.amount : 'Not For Sale'}</p>
+        
       </li>
     ));
   };

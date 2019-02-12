@@ -1,0 +1,13 @@
+.filterForm{
+    background: rgb(160, 159, 159);
+    padding: 10px;
+    color: white;
+}
+#bookType{
+    margin: 5px;
+}
+
+#printType{
+    margin: 5px;
+
+}

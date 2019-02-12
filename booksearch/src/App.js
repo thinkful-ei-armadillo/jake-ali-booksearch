@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SearchBar from './searchbar';
 import SearchFilter from './searchfilter';
@@ -87,10 +86,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header" >
+        <h1>Google Book Search</h1>
+          </header>
           <div className="Booksearch-bar">
           <SearchBar searchTerm={(word) => this.searchTerm(word)} updateSearchWord={(e) => this.updateSearchWord(e)} />
           </div>
-          </header>
           <div className="Booksearch-filter">
           {<SearchFilter handleFilter={(filter) => this.handleFilter(filter)}/>}
           </div>
